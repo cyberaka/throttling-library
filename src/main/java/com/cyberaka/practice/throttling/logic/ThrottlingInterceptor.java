@@ -20,10 +20,10 @@ public class ThrottlingInterceptor implements HandlerInterceptor {
 
     private Logger log = LoggerFactory.getLogger(getClass().getName());
 
-    @Value("${throttling_start}")
+    @Value("${throttling.start}")
     private int throttlingStart;
 
-    @Value("${throttling_delay}")
+    @Value("${throttling.delay}")
     private int throttlingDelay;
 
     @Autowired

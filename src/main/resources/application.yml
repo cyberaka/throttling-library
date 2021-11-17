@@ -1,6 +1,5 @@
 server:
-  port: ${server_port}
+  port: 8080
 throttling:
-  start: ${throttling_start}
-  delay: ${throttling_delay}
-  increment: ${throttling_increment}
+  start: 100
+  delay: 500
