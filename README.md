@@ -2,25 +2,28 @@
 throttling-library
 
 # Purpose
-Implement a simple thorttling implementation which works seamlessly with spring-boot rest framework.
+Implement a simple throttling implementation which works seamlessly with spring-boot rest framework.
 
 # Approach
-The idea is to use interceptors concept of spring to intercept any calls that are coming in and ensure that if the volume of calls go above a given limit the request is exponentially delayed. 
+The idea is to use interceptors concept of spring to intercept any calls that are coming in 
+and ensure that if the volume of calls go above a given limit the request is delayed. 
 
 The solution will gracefully increase and decrease the delay based on the volume of traffic. 
 
-throttling_limit -> Decides after how many concurrent connections does throttling kick in
+throttling_limit -> TPS above which throttling will be applied
 
-throttling_delay -> The delay factor to be introduced in subsequent calls
+throttling_delay -> The delay in millis if throttling is enabled
 
-throttling_increment -> The increment for throttling delay if connections don't go down. 
+We are leveraging spring scheduler to measure the number of hits received in last second to determine TPS.
 
-We basically count the number of connections that came in and got concluded in a period of time.
-
-if the number of concurrent connections which are not concluded exceeds throttling_limit then throttling logic will get activated.
+If the TPS exceeds throttling_limit then throttling logic will get activated.
 
 # Solution
 We will leverage the concept of Interceptors in spring boot which will be triggered before the controller is activated.
 
-# Useful Articles
-https://www.tutorialspoint.com/spring_boot/spring_boot_interceptor.htm
+# TODO 
+This is a plain throttler. The following can be implemented later:
+
+- Throttling based on Client / IP
+- Throttling based on API key
+- HTTP 503 support

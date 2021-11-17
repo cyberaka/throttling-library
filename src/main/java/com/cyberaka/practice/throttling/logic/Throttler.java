@@ -3,6 +3,9 @@ package com.cyberaka.practice.throttling.logic;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * Throttler implementation for computing TPS and need for delay.
+ */
 public class Throttler {
 
     private ReentrantLock lock = new ReentrantLock();

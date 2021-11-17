@@ -12,6 +12,9 @@ import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Throttler interceptor to intercept any request that comes in and invoke the thorttler logic.
+ */
 @Component
 public class ThrottlingInterceptor implements HandlerInterceptor {
 
@@ -38,6 +41,7 @@ public class ThrottlingInterceptor implements HandlerInterceptor {
     public boolean preHandle
             (HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
+        // Lets cause a delay if the delay is already identified at the level of the throttler.
         if (throttler.getDelay() > 0) {
             Thread.sleep(throttler.getDelay());
         }

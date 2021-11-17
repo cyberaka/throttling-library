@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * This class will invoke the throttler logic to determine TPS.
+ */
 @Component
 public class ThrottlerSchedule {
 
